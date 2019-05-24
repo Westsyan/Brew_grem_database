@@ -1,0 +1,31 @@
+@()(implicit session: Session)
+<div class="page-bar">
+  <ul class="page-breadcrumb">
+    <li>
+      <b style="font-size: 20px;">
+        @if(session.get("proId").get == "1"){
+          16S 菌群多样性数据
+        }else{
+          ITS 菌群多样性数据
+        }
+      </b>
+    </li>
+    <li style="margin-left: 2em;">
+      <a href="@routes.DiversityController.before16s()" ><i class="fa fa-cloud-upload"></i>
+        数据导入</a>
+    </li>
+    <li style="margin-left: 2em;">
+      <a href="@routes.DiversityController.dataBefore()"><i class="fa fa-sliders"></i>
+        样品管理</a>
+    </li>
+    <li style="margin-left: 2em;">
+      <a href="@routes.DiversityController.otuBefore()" ><i class="fa fa-book"></i>
+        OTU聚类和分类学注释分析</a>
+    </li>
+    <li style="margin-left: 2em;">
+      <a href="@routes.DiversityController.taskBefore()"><i class="fa fa-sliders"></i>
+        分析结果</a>
+    </li>
+
+  </ul>
+</div>

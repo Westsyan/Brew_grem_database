@@ -1,0 +1,70 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET           /                                        controllers.HomeController.loginBefore
+
+GET           /bacteria/login/login                    controllers.HomeController.login
+
+
+
+
+GET           /bacteria/utils/getImageByPhotoId        controllers.UtilsController.getImageByPhotoId(id:String,name:String)
+
+GET           /bacteria/admin/downloadExample          controllers.UtilsController.downloadExample
+
+
+GET           /grem/account/accountBefore              controllers.AccountController.accountBefore
+GET           /grem/account/aManageBefore              controllers.AccountController.manageBefore
+POST          /grem/account/getAllAcount               controllers.AccountController.getAllAcount
+POST          /grem/account/addAccount                 controllers.AccountController.addAccount
+POST          /grem/account/resetPassword              controllers.AccountController.resetPassword(id:Int)
+DELETE        /grem/account/deleteAccount              controllers.AccountController.deleteAccount(id:Int)
+GET           /grem/account/checkAccount               controllers.AccountController.checkAccount
+GET           /grem/account/checkName                  controllers.AccountController.checkName
+
+GET           /grem/password/newPassword               controllers.AccountController.newPassword
+POST          /grem/password/changePassword            controllers.AccountController.changePassword
+
+GET           /grem/diversity/before16s                controllers.DiversityController.before16s
+GET           /grem/diversity/otuBefore                controllers.DiversityController.otuBefore
+GET           /grem/diversity/taskBefore               controllers.DiversityController.taskBefore
+GET           /grem/diversity/dataBefore               controllers.DiversityController.dataBefore
+GET           /grem/diversity/home                     controllers.DiversityController.home
+GET           /grem/diversity/toDiversity              controllers.DiversityController.toDiversity(proId:Int)
+
+POST          /grem/diversity/uploadFile               controllers.SampleController.uploadFile
+POST          /grem/diversity/reset                    controllers.SampleController.reset
+POST          /grem/diversity/checkName                controllers.SampleController.checkSample
+POST          /grem/diversity/checkNewsample           controllers.SampleController.checkNewsample
+POST          /grem/diversity/getAllSample             controllers.SampleController.getAllSample
+POST          /grem/diversity/getAllSampleName         controllers.SampleController.getAllSampleName
+POST          /grem/diversity/isRunCmd                 controllers.SampleController.isRunCmd(sample:String)
+DELETE        /grem/diversity/deleteSample             controllers.SampleController.deleteSample(id:Int)
+GET           /grem/diversity/openLogFile              controllers.SampleController.openLogFile(id:Int)
+GET           /grem/diversity/download                 controllers.SampleController.download(id:Int,code:Int)
+GET           /grem/diversity/deployGet                controllers.SampleController.deployGet(id:Int)
+PUT           /grem/diversity/updateSample             controllers.SampleController.updateSample
+
+POST          /grem/diversity/getTime                  controllers.OtuController.getTime
+POST          /grem/diversity/checkOtuName             controllers.OtuController.checkName
+POST          /grem/diversity/saveDeploy               controllers.OtuController.saveDeploy
+POST          /grem/diversity/getAllTask               controllers.OtuController.getAllTask
+POST          /grem/diversity/resetOtu                 controllers.OtuController.resetOtu
+POST          /grem/diversity/runResetCmd              controllers.OtuController.runResetCmd(id:Int)
+DELETE        /grem/diversity/deleteTask               controllers.OtuController.deleteTask(id:Int)
+GET           /grem/diversity/getLog                   controllers.OtuController.getLog(id:Int)
+GET           /grem/diversity/getTax                   controllers.OtuController.getTax(id:Int)
+POST          /grem/diversity/getDeploy                controllers.OtuController.getDeploy(id:Int)
+POST          /grem/diversity/getRdpDeploy             controllers.OtuController.getRdpDeploy(id:Int)
+POST          /grem/diversity/prepareRdp               controllers.OtuController.prepareRdp
+POST          /grem/diversity/runRdpCmd                controllers.OtuController.runRdpCmd(id:Int)
+PUT           /grem/diversity/updateOtuName            controllers.OtuController.updateOtuName
+
+
+
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET           /assets/*file                            controllers.Assets.at(path="/public", file)

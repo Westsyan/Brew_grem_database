@@ -1,0 +1,81 @@
+<div class="page-header navbar navbar-fixed-top">
+        <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner">
+            <!-- BEGIN LOGO -->
+        <div class="page-logo" style="text-align: center;
+            line-height: 50px;">
+            <i class="logo">酿造菌种数据库</i>
+        </div>
+
+        <a href="routes.TeacherController.dataBefore()" class="page-option">
+            <div class="page-menu-left" id="admin">
+                <div style="margin-top: 5px">
+                    <i class="fa fa-bar-chart logo-left" style="font-size: 20px"></i>
+                </div>
+                <span class="page-header-text"> 数据查看</span>
+            </div>
+        </a>
+
+
+        <a href="#" class="page-option" style="display: none">
+            <div class="page-menu-left " >
+                <div style="margin-top: 5px">
+                    <i class="fa fa-image logo-left" style="font-size: 20px"></i>
+                </div>
+                <span class="page-header-text"> 数据对比</span>
+            </div>
+        </a>
+        <a href="#" class="page-option" style="display: none">
+            <div class="page-menu-left" >
+                <div style="margin-top: 5px">
+                    <i class="fa fa-line-chart logo-left" style="font-size: 20px"></i>
+                </div>
+                <span class="page-header-text"> 数据管理</span>
+            </div>
+        </a>
+        <a href="#" class="page-option" style="display: none">
+            <div class="page-menu-left" >
+                <div style="margin-top: 5px">
+                    <i class="fa fa-cog logo-left" style="font-size: 20px"></i>
+                </div>
+                <span class="page-header-text"> 系统设置</span>
+            </div>
+        </a>
+
+
+        <a href="@routes.HomeController.loginBefore()" class="page-option">
+            <div class="page-menu-right" >
+                <div style="margin-top: 5px">
+                    <i class="fa fa-sign-out logo-right" style="font-size: 20px"></i>
+                </div>
+                <span class="page-header-text"> 退出</span>
+            </div>
+        </a>
+
+
+        <a href="routes.TeacherController.newPassword()" class="page-option">
+            <div class="page-menu-right" id="password">
+                <div style="margin-top: 5px">
+                    <i class="fa fa-lock logo-right" style="font-size: 20px"></i>
+                </div>
+                <span class="page-header-text"> 修改密码</span>
+            </div>
+        </a>
+    </div>
+</div>
+
+    <script>
+
+        $(function () {
+            var href = window.location.href;
+
+             if(String(href).indexOf("/teacher/") != -1){
+                $("#admin").addClass("action");
+            }else if(String(href).indexOf("/password/") != -1){
+                $("#password").addClass("action");
+            }
+
+        });
+
+
+    </script>

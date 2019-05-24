@@ -1,0 +1,126 @@
+@()(implicit session: Session)
+<style>
+
+	.left-fork {
+        padding-left: 40px
+    }
+
+    .left-active {
+        background-color: #393631;
+        color: white !important;
+    }
+
+
+</style>
+
+
+
+<div class="page-sidebar-wrapper">
+    <div class="page-sidebar navbar-collapse collapse" style="min-height: 900px">
+        <ul class="page-sidebar-menu " data-auto-scroll="true" data-slide-speed="200" id="projects">
+
+
+            <li id="home" style="background-color: #2B2A28;
+                height: 40px">
+                <a>
+                    <i class="fa fa-bar-chart"></i>
+                    <span>菌群多样性数据</span>
+                </a>
+            </li>
+
+
+            <li style="height: 40px;" id="1">
+                <a href='@routes.DiversityController.toDiversity(1)' >
+                    <span class="left-fork">16S 菌群多样性数据</span>
+                    <span class='selected'></span>
+
+                </a>
+            </li>
+
+            <li style="height: 40px;" id="2">
+                <a href='@routes.DiversityController.toDiversity(2)'>
+                    <span class="left-fork">ITS 菌群多样性数据</span>
+                    <span class='selected'></span>
+
+                </a>
+            </li>
+
+
+            <li id="home" style="background-color: #2B2A28;
+                height: 40px">
+                <a>
+                    <i class="fa fa-bar-chart"></i>
+                    <span>代谢组数据</span>
+                </a>
+            </li>
+
+
+            <li style="height: 40px;" id="3">
+                <a href='routes.BackgroundController.dataUploadBefore()' >
+                    <span class="left-fork">代谢组数据</span>
+                    <span class='selected'></span>
+
+                </a>
+            </li>
+
+
+            <li id="home" style="background-color: #2B2A28;
+                height: 40px">
+                <a>
+                    <i class="fa fa-bar-chart"></i>
+                    <span>理化特征、风味数据</span>
+                </a>
+            </li>
+
+
+            <li style="height: 40px;" id="4">
+                <a href='routes.BackgroundController.dataUploadBefore()' >
+                    <span class="left-fork">理化特征数据</span>
+                    <span class='selected'></span>
+
+                </a>
+            </li>
+
+            <li style="height: 40px;" id="5">
+                <a href='routes.BackgroundController.manageBefore()'>
+                    <span class="left-fork">风味数据</span>
+                    <span class='selected'></span>
+
+                </a>
+            </li>
+
+
+            <li id="home" style="background-color: #2B2A28;
+                height: 40px">
+                <a>
+                    <i class="fa fa-bar-chart"></i>
+                    <span>HMDB代谢物数据库</span>
+                </a>
+            </li>
+
+
+            <li style="height: 40px;" id="6">
+                <a href='routes.BackgroundController.dataUploadBefore()' >
+                    <span class="left-fork">HMDB代谢物数据库</span>
+                    <span class='selected'></span>
+
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+    <script>
+
+        $(function () {
+            var proId = @session.get("proId").get
+            $("#" + proId).addClass("active")
+        })
+
+    </script>
+
+
+
+
+
+

@@ -1,0 +1,171 @@
+@()(implicit session: Session)
+@home.main("管理项目") {
+
+    <style>
+            .borders {
+                width: 300px;
+                height: 250px;
+                border: 1px solid #333333;
+                border-radius: 10px 10px 10px 10px;
+                margin: 30px 30px 30px 30px;
+                float: left;
+            }
+
+            .logos {
+                width: 48px;
+                float: left;
+                margin-top: 10px;
+            }
+
+            .title {
+                height: 36px;
+                position: relative;
+                word-break: break-all;
+                margin-left: 45px;
+            }
+
+            .name {
+                font-size: 20px;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+            }
+
+            h1 {
+                width: 300px;
+            }
+
+            .group {
+                margin-left: 50px;
+                float: left
+            }
+
+    </style>
+    <div class="page-content-wrapper">
+
+        <div class="page-content">
+
+            <div class="row-fluid">
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+
+                        <div class="group">
+                            <h1>菌群多样性数据</h1>
+
+
+                            <div class="borders">
+                                <div style="margin-left: 2em;">
+                                    <img src="/assets/images/3.png" class="logos" >
+                                    <div class="title">
+                                        <h3 class="name"><a href='@routes.DiversityController.toDiversity(1)'>16s 菌群多样性数据</a></h3></div>
+                                    <br>
+                                    <p style="margin-top: 20px;">样品数量：12</p>
+                                    <p>项目描述：16s 菌群多样性数据。</p>
+                                    <a class="btn btn-primary" style="margin-top: 20px;" href='http://:8004/project/home'>
+                                        开始分析</a>
+
+                                </div>
+                            </div>
+
+                            <div class="borders">
+                                <div style="margin-left: 2em;">
+                                    <img src="/assets/images/3.png" class="logos" >
+                                    <div class="title">
+                                        <h3 class="name"><a href='http://:8004/project/home'>ITS 菌群多样性数据</a></h3></div>
+                                    <br>
+                                    <p style="margin-top: 20px;">样品数量：12</p>
+                                    <p>项目描述：ITS 菌群多样性数据。</p>
+                                    <a class="btn btn-primary" style="margin-top: 20px;" href='http://:8004/project/home'>
+                                        开始分析</a>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="group">
+                            <h1>代谢组数据</h1>
+
+                            <div class="borders">
+                                <div style="margin-left: 2em;">
+                                    <img src="/assets/images/3.png" class="logos" >
+                                    <div class="title">
+                                        <h3 class="name"><a href='http://:8004/project/home'>代谢组数据</a></h3></div>
+                                    <br>
+                                    <p style="margin-top: 20px;">样品数量：12</p>
+                                    <p>项目描述：代谢组数据。</p>
+                                    <a class="btn btn-primary" style="margin-top: 20px;" href='http://:8004/project/home'>
+                                        开始分析</a>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="group">
+                            <h1>理化特征、风味数据</h1>
+
+
+                            <div class="borders">
+                                <div style="margin-left: 2em;">
+                                    <img src="/assets/images/3.png" class="logos" >
+                                    <div class="title">
+                                        <h3 class="name"><a href='http://:8004/project/home'>理化特征数据</a></h3></div>
+                                    <br>
+                                    <p style="margin-top: 20px;">样品数量：12</p>
+                                    <p>项目描述：理化特征数据。</p>
+                                    <a class="btn btn-primary" style="margin-top: 20px;" href='http://:8004/project/home'>
+                                        开始分析</a>
+
+                                </div>
+                            </div>
+
+                            <div class="borders">
+                                <div style="margin-left: 2em;">
+                                    <img src="/assets/images/3.png" class="logos" >
+                                    <div class="title">
+                                        <h3 class="name"><a href='http://:8004/project/home'>风味数据</a></h3></div>
+                                    <br>
+                                    <p style="margin-top: 20px;">样品数量：12</p>
+                                    <p>项目描述：风味数据。</p>
+                                    <a class="btn btn-primary" style="margin-top: 20px;" href='http://:8004/project/home'>
+                                        开始分析</a>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+
+                        <div class="group">
+                            <h1>HMDB代谢物数据库</h1>
+
+                            <div class="borders">
+                                <div style="margin-left: 2em;">
+                                    <img src="/assets/images/3.png" class="logos" >
+                                    <div class="title">
+                                        <h3 class="name"><a href='http://:8004/project/home'>HMDB代谢物数据库</a></h3></div>
+                                    <br>
+                                    <p style="margin-top: 20px;">平台说明：</p>
+                                    <p>HMDB代谢物数据库。</p>
+                                    <a class="btn btn-primary" style="margin-top: 20px;" href='http://:8004/project/home'>
+                                        开始分析</a>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}

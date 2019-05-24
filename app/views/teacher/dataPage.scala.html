@@ -1,0 +1,135 @@
+@()(implicit session: Session)
+@teacher.main("数据查看") {
+
+
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <b style="font-size: 20px;">数据查看</b>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="row-fluid">
+
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+                <div class="portlet blue-soft box">
+
+                    <div class="portlet-title">
+                        <div class="caption">
+                            数据查看
+                        </div>
+                    </div>
+
+                    <div class="portlet-body">
+
+                        <div id="checkbox" class="checkbox"></div>
+
+                        <div id="toolbar"></div>
+
+                        <table class="table table-bordered table-hover " id="table" data-pagination="true" data-search="true"
+                        data-toolbar="#toolbar" data-page-list="[10, 25, 50, 100, all]" data-search-align="left" data-multiple-search="true"
+                        >
+                            <thead>
+                                <tr>
+                                    <th data-field="bacteriaNameEn" data-sortable="true">菌株名称（英文）</th>
+                                    <th data-field="bacteriaNameCh" data-sortable="true">菌株名称（中文）</th>
+                                    <th data-field="initials" data-sortable="true">菌株名称首字母</th>
+                                    <th data-field="glycerinPosition" data-sortable="true">甘油管保藏位置</th>
+                                    <th data-field="ampoulePosition" data-sortable="true">安瓿管保藏位置</th>
+                                    <th data-field="preservedForm" data-sortable="true">保藏形式</th>
+                                    <th data-field="labNumber" data-sortable="true">实验室原始编号</th>
+                                    <th data-field="resAndCon" data-sortable="true">抗性及浓度</th>
+                                    <th data-field="cultureMedium" data-sortable="true">培养基</th>
+                                    <th data-field="cultureCondition" data-sortable="true">培养条件</th>
+                                    <th data-field="source" data-sortable="true">来源</th>
+                                    <th data-field="apply" data-sortable="true">应用</th>
+                                    <th data-field="worksCited" data-sortable="true">引用文献</th>
+                                    <th data-field="preservedPeople" data-sortable="true">保藏人</th>
+                                    <th data-field="teacher" data-sortable="true">指导老师</th>
+                                    <th data-field="preservedDate" data-sortable="true">保藏日期</th>
+                                    <th data-field="isSercet" data-sortable="true">是否保密</th>
+                                    <th data-field="primerSeq" data-sortable="true">引物序列</th>
+                                    <th data-field="seqIndex" data-sortable="true">序列索引号</th>
+                                    <th data-field="ampouleNums" data-sortable="true">安瓿管数量</th>
+                                    <th data-field="glycerinNotes" data-sortable="true">甘油管备注</th>
+                                    <th data-field="isGmo" data-sortable="true">是否基因改造</th>
+                                    <th data-field="goverName" data-sortable="true">内包含质粒名称</th>
+                                    <th data-field="ggcc" data-sortable="true">酶切位点/应用</th>
+                                    <th data-field="primer" data-sortable="true">引物</th>
+                                    <th data-field="length" data-sortable="true">长度</th>
+                                    <th data-field="outName" data-sortable="true">敲除基因名称</th>
+                                </tr>
+                            </thead>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+
+            $(function () {
+
+                var array = ["菌株名称（中文）", "菌株名称首字母", "甘油管保藏位置", "安瓿管保藏位置", "保藏形式",
+                    "实验室原始编号", "抗性及浓度", "培养基", "培养条件", "来源", "应用", "引用文献", "保藏人", "指导老师",
+                    "保藏日期", "是否保密", "引物序列", "序列索引号", "安瓿管数量", "甘油管备注","是否基因改造",
+                    "内包含质粒名称","酶切位点/应用","引物","长度","敲除基因名称"];
+                var values = ["bacteriaNameCh", "initials", "glycerinPosition", "ampoulePosition", "preservedForm","labNumber",
+                    "resAndCon", "cultureMedium", "cultureCondition", "source", "apply", "worksCited", "preservedPeople",
+                    "teacher", "preservedDate", "isSercet", "primerSeq", "seqIndex", "ampouleNums" ,"glycerinNotes",
+                    "isGmo","goverName","ggcc","primer","length","outName"];
+                var html = "";
+                $.each(array, function (n, value) {
+                            html += "<label style='margin-right: 15px'>" +
+                                    "<input type='checkbox' checked='checked' value='" + values[n] + "' onclick=\"setColumns('" + values[n] + "')\">" + value +
+                                    "</label>"
+                        }
+                );
+                $("#checkbox").append(html);
+
+                $('#table').bootstrapTable({});
+                var hiddenArray = ["resAndCon", "cultureMedium", "cultureCondition", "source","apply","worksCited",
+                    "primerSeq", "seqIndex",
+                    "ampouleNums", "glycerinNotes","isGmo", "goverName","ggcc","primer","length","outName"];
+                $.each(hiddenArray, function (n, value) {
+                            $('#table').bootstrapTable('hideColumn', value);
+                            $("input:checkbox[value=" + value + "]").attr("checked", false)
+                        }
+                );
+
+                reloadData();
+            });
+
+
+            function setColumns(value) {
+                var element = $("input:checkbox[value=" + value + "]");
+                if (element.is(":checked")) {
+                    $('#table').bootstrapTable('showColumn', value);
+                } else {
+                    $('#table').bootstrapTable('hideColumn', value);
+                }
+            }
+
+            function reloadData() {
+                $.ajax({
+                    url: "routes.TeacherController.getDataByTeacher()",
+                    type: "post",
+                    success: function (data) {
+                        $("#table").bootstrapTable("load", data)
+                    }
+                });
+            }
+
+
+
+    </script>
+}

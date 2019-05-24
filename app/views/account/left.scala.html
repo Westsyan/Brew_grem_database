@@ -1,0 +1,57 @@
+<style>
+
+	.left-fork {
+        padding-left: 40px
+    }
+
+    .left-active {
+        background-color: #393631;
+        color: white !important;
+    }
+
+
+</style>
+
+
+
+<div class="page-sidebar-wrapper">
+    <div class="page-sidebar navbar-collapse collapse">
+        <ul class="page-sidebar-menu " data-auto-scroll="true" data-slide-speed="200" id="projects">
+
+
+
+            <li id="home" style="background-color: #2B2A28;
+                height: 40px" >
+                <a href=''>
+                    <i class="fa fa-eye"></i>
+                    <span>账号</span>
+                </a>
+            </li>
+
+
+            <li style="height: 40px;" id="accountBefore">
+                <a href='@routes.AccountController.accountBefore()' >
+                    <span class="left-fork">新增账号</span>
+                    <span class='selected'></span>
+                </a>
+            </li>
+
+            <li style="height: 40px;" id="aManageBefore">
+                <a href='@routes.AccountController.manageBefore()'>
+                    <span class="left-fork">账号管理</span>
+                    <span class='selected'></span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

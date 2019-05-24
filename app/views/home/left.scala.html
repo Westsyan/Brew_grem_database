@@ -1,0 +1,108 @@
+<style>
+
+	.left-fork {
+        padding-left: 40px
+    }
+
+    .left-active {
+        background-color: #393631;
+        color: white !important;
+    }
+
+
+</style>
+
+
+
+<div class="page-sidebar-wrapper">
+    <div class="page-sidebar navbar-collapse collapse" style="min-height: 900px">
+        <ul class="page-sidebar-menu " data-auto-scroll="true" data-slide-speed="200" id="projects">
+
+
+            <li id="home" style="background-color: #2B2A28;
+                height: 40px">
+                <a>
+                    <i class="fa fa-home"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+
+            <li  style="background-color: #2B2A28;
+                height: 40px">
+                <a>
+                    <i class="fa fa-eye"></i>
+                    <span>数据管理</span>
+                </a>
+            </li>
+
+            <li style="height: 40px;" id="dataUploadBefore">
+                <a href='@routes.DiversityController.toDiversity(1)' >
+                    <span class="left-fork">菌群多样性数据</span>
+                    <span class='selected'></span>
+
+                </a>
+            </li>
+
+            <li style="height: 40px;" id="manageBefore">
+                <a href='routes.BackgroundController.manageBefore()'>
+                    <span class="left-fork">代谢组数据</span>
+                    <span class='selected'></span>
+
+                </a>
+            </li>
+
+            <li style="height: 40px;" id="manageBefore">
+                <a href='routes.BackgroundController.manageBefore()'>
+                    <span class="left-fork">理化特征、风味数据</span>
+                    <span class='selected'></span>
+
+                </a>
+            </li>
+
+            <li style="height: 40px;" id="manageBefore">
+                <a href='routes.BackgroundController.manageBefore()'>
+                    <span class="left-fork">HMDB代谢物数据库</span>
+                    <span class='selected'></span>
+
+                </a>
+            </li>
+
+
+            <li id="home" style="background-color: #2B2A28;
+                height: 40px">
+                <a>
+                    <i class="fa fa-line-chart"></i>
+                    <span>账号管理</span>
+                </a>
+            </li>
+
+
+
+            <li id="home" style="background-color: #2B2A28;
+                height: 40px">
+                <a>
+                    <i class="fa fa-lock"></i>
+                    <span>修改密码</span>
+                </a>
+            </li>
+
+            <li id="home" style="background-color: #2B2A28;
+                height: 40px">
+                <a>
+                    <i class="fa fa-sign-out"></i>
+                    <span>退出管理</span>
+                </a>
+            </li>
+
+
+
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+

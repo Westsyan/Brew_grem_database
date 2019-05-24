@@ -1,0 +1,203 @@
+@()(implicit session: Session)
+@admin.main("后台统计") {
+
+
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <b style="font-size: 20px;">数据管理</b>
+            </li>
+            <li style="margin-left: 2em;">
+                <a href="#" ><i class="fa fa-cloud-upload"></i>
+                    数据导入</a>
+            </li>
+
+            <li style="margin-left: 2em;">
+                <a href="#"><i class="fa fa-sliders"></i>
+                    数据管理</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="row-fluid">
+
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+                <div class="portlet blue-soft box">
+
+                    <div class="portlet-title">
+                        <div class="caption">
+                            数据导入
+                        </div>
+                    </div>
+
+                    <div class="portlet-body" style="height: 200px;">
+
+
+                        <form class="registration-form form-horizontal" id="UploadForm" method="get"
+                        accept-charset="UTF-8">
+
+                            <div class="form-group">
+                                <label class="col-sm-12">菌种文件:</label>
+                                <div class="col-sm-4 indent">
+                                    <input id="input-1" type="file" class="file" name="file" data-show-preview="false"
+                                    data-show-upload="false" accept=".xlsx,.xls" >
+                                    <span class="help-block"><a href="#"><em id="egCrics">Example_File</em></a></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class = "actions indent col-sm-4">
+                                    <button type="button" class="btn btn-primary" style="width: 100%;" id="search" onclick="Upload()">
+                                        导入</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+                <div class="portlet blue-soft box">
+
+                    <div class="portlet-title">
+                        <div class="caption">
+                            数据查看
+                        </div>
+                    </div>
+
+                    <div class="portlet-body" style="height: 400px;">
+
+                        <div id="toolbar"></div>
+
+                        <table class="table table-bordered table-hover " id="table" data-pagination="true" data-search="true"
+                        data-toolbar="#toolbar" data-page-list="[10, 25, 50, 100, all]" data-search-align="left" data-multiple-search="true"
+                        >
+                            <thead>
+                                <tr>
+                                    <th data-field="id">ID</th>
+                                    <th data-field="bacteriaNameCh">菌株名称（中文）</th>
+                                    <th data-field="bacteriaNameEn">菌株名称（英文）</th>
+                                    <th data-field="preservedPeople">保藏人</th>
+                                    <th data-field="teacher">指导老师</th>
+                                    <th data-field="isSercet">是否保密</th>
+                                    <th data-field="preservedDate">保藏日期</th>
+                                </tr>
+                            </thead>
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+
+            $(function () {
+
+                $.ajax({
+                    url:"routes.BackgroundController.getAllData()",
+                    type:"post",
+                    success:function (data) {
+                        $("#table").bootstrapTable({
+                            data:data
+                        })
+                    }
+                });
+
+
+                formValidation();
+            });
+
+
+
+
+            function formValidation() {
+                $('#UploadForm').formValidation({
+                    framework: 'bootstrap',
+                    icon: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    fields: {
+                        file1: {
+                            validators: {
+                                notEmpty: {
+                                    message: '请选择一个数据文件！'
+                                },
+                                file: {
+                                    extension: 'xlsx,xls',
+                                    maxSize: 1024*1024*10,
+                                    message: '只支持10M以下excel文件！'
+                                }
+                            }
+                        }
+                    }
+                })
+            }
+
+
+            var time="";
+
+            function Upload() {
+                var date = new Date();
+                time = date.getTime();
+
+                var form = $("#UploadForm");
+                var fv = form.data("formValidation");
+                fv.validate();
+                if (fv.isValid()) {
+                    var element = "<div id='content'><span id='info'>文件上传中： </span><span id='progress'></span></div>";
+                    var index = layer.msg(element, {
+                        icon: 16
+                        , shade: 0.01,
+                        time: 20000000
+                    });
+                }
+                var form1 = new FormData($("#UploadForm")[0]);
+                $.ajax({
+                    url:"routes.BackgroundController.addXlsxfile()",
+                    type: "post",
+                    dataType: "json",
+                    processData: false,
+                    contentType: false,
+                    data: form1,
+                    xhr: function () { //获取ajaxSettings中的xhr对象，为它的upload属性绑定progress事件的处理函数
+
+                        myXhr = $.ajaxSettings.xhr();
+                        if (myXhr.upload) { //检查upload属性是否存在
+                            //绑定progress事件的回调函数
+                            myXhr.upload.addEventListener('progress', progressHandlingFunction, false);
+                        }
+                        return myXhr; //xhr对象返回给jQuery使用
+                    },
+                    success: function () {
+                        layer.close(index);
+                        swal("","上传成功！","success");
+                    }
+                })
+
+            }
+
+            $("#input-1").fileinput({
+                showPreview: false,
+                browseLabel: "选择文件",
+                maxFileSize: 1024 * 1024
+            })
+
+    </script>
+
+
+}
